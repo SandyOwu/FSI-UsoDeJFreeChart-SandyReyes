@@ -160,7 +160,7 @@ public class FConsultas extends javax.swing.JFrame {
 
     private void BPromedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPromedioActionPerformed
 
-        String query = "SELECT nombrep, ROUND(AVG(nvl_glucosa), 1) AS promedio FROM mediciones, pacientes WHERE pacientes_curp = curp GROUP BY curp";
+        String query = "SELECT nombrep, glucosa_prom FROM promedios";
 
         datos = cnx.consultar(query);
         series.clear();
@@ -175,7 +175,7 @@ public class FConsultas extends javax.swing.JFrame {
     }//GEN-LAST:event_BPromedioActionPerformed
 
     private void BMensualLuisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BMensualLuisaActionPerformed
-        String query = "SELECT CONCAT(`año`, '-', LPAD(mes, 2, '0')) AS periodo, glucosa_prom FROM promedios_mensual WHERE curp = 'ausl120130a' ORDER BY `año`, mes";
+        String query = "SELECT CONCAT(año, '-', LPAD(mes, 2, '0')) AS periodo, glucosa_prom FROM promedios_mensual WHERE curp = 'ausl120130a' ORDER BY año, mes";
 
         datos = cnx.consultar(query);
         series.clear();
@@ -187,11 +187,11 @@ public class FConsultas extends javax.swing.JFrame {
         PGrafica.revalidate();
         PGrafica.repaint();
 
-        cnx.entablar(query, TQuery, 60, 40);
+        cnx.entablar(query, TQuery);
     }//GEN-LAST:event_BMensualLuisaActionPerformed
 
     private void BMenualScottActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BMenualScottActionPerformed
-        String query = "SELECT CONCAT(`año`, '-', LPAD(mes, 2, '0')) AS periodo, glucosa_prom FROM promedios_mensual WHERE curp = 'pals070827b' ORDER BY `año`, mes";
+        String query = "SELECT CONCAT(año, '-', LPAD(mes, 2, '0')) AS periodo, glucosa_prom FROM promedios_mensual WHERE curp = 'pals070827b' ORDER BY año, mes";
 
         datos = cnx.consultar(query);
         series.clear();
